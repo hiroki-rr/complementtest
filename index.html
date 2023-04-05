@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>激しいUIで褒める</title>
+  </head>
+  <body>
+    <h1>激しいUIで褒める</h1>
+    <p>ボタンをクリックして画面を揺らし、ランダムな褒め言葉を表示しましょう！</p>
+    <button onclick="praise()">褒める</button>
+    <script>
+      // 褒め言葉リスト
+      const compliments = [
+        "すごい！",
+        "すばらしい！",
+        "素晴らしい！",
+        "最高！",
+        "天才！",
+        "すごいね！",
+        "完璧！",
+        "素晴らしい仕事！",
+        "やったね！",
+        "神のような力を持つ！"
+      ];
+
+      // 画面を揺らす関数
+      function shakeScreen() {
+        const body = document.querySelector("body");
+        body.style.position = "relative";
+        const distance = 20;
+        const speed = 75;
+        for(let i = 0; i < 4; i++) {
+          body.style.left = (distance * -1) + "px";
+          setTimeout(() => {
+            body.style.left = distance + "px";
+          }, speed);
+          setTimeout(() => {
+            body.style.left = 0;
+          }, speed * 2);
+        }
+      }
+
+      // ランダムな褒め言葉を表示する関数
+      function compliment() {
+        const randomIndex = Math.floor(Math.random() * compliments.length);
+        const message = compliments[randomIndex];
+        const compliment = document.createElement("h1");
+        compliment.innerText = message;
+        compliment.style.fontSize = "10rem";
+        compliment.style.position = "fixed";
+        compliment.style.top = "50%";
+        compliment.style.left = "50%";
+        compliment.style.transform = "translate(-50%, -50%)";
+        compliment.style.color = "white";
+        compliment.style.textShadow = "0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de";
+        document.body.appendChild(compliment);
+      }
+
+      // 画面を揺らし、ランダムな褒め言葉を表示する
+      function praise() {
+        shakeScreen();
+        compliment();
+      }
+    </script>
+  </body>
+</html>
